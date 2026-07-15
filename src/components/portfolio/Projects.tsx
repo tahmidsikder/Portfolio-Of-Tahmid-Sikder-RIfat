@@ -15,36 +15,76 @@ export default function Projects() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Stagger card reveal
-      gsap.from("[data-project-card]", {
-        y: 80,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "[data-projects-list]", start: "top 75%" },
-      });
+      // Stagger card reveal — use fromTo with immediateRender:false so cards
+      // stay visible at their natural CSS state until the trigger fires.
+      gsap.fromTo(
+        "[data-project-card]",
+        { y: 80, opacity: 0, immediateRender: false },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          stagger: 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-projects-list]",
+            start: "top 85%",
+            once: true,
+            toggleActions: "play none none none",
+          },
+        }
+      );
 
       // Section header slide
-      gsap.from("[data-projects-header]", {
-        y: 30,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: { trigger: root.current, start: "top 80%" },
-      });
+      gsap.fromTo(
+        "[data-projects-header]",
+        { y: 30, opacity: 0, immediateRender: false },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: root.current,
+            start: "top 85%",
+            once: true,
+            toggleActions: "play none none none",
+          },
+        }
+      );
 
       // Section title
-      gsap.from("[data-projects-title] > span", {
-        y: 80,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: { trigger: "[data-projects-title]", start: "top 80%" },
-      });
+      gsap.fromTo(
+        "[data-projects-title] > span",
+        { y: 80, opacity: 0, immediateRender: false },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.08,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "[data-projects-title]",
+            start: "top 85%",
+            once: true,
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }, root);
-    return () => ctx.revert();
+
+    // Recalculate trigger positions after preloader + fonts settle.
+    // The preloader locks scroll at 0 for ~1.8s; ScrollTrigger caches
+    // stale start positions during that window. Refreshing after a delay
+    // ensures the trigger fires correctly when the user scrolls.
+    const refreshId = window.setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 2200);
+
+    return () => {
+      ctx.revert();
+      window.clearTimeout(refreshId);
+    };
   }, []);
 
   return (

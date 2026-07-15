@@ -8,8 +8,10 @@ import Header from "@/components/portfolio/Header";
 import Hero from "@/components/portfolio/Hero";
 import About from "@/components/portfolio/About";
 import Marquee from "@/components/portfolio/Marquee";
+import Projects from "@/components/portfolio/Projects";
 import Education from "@/components/portfolio/Education";
 import Skills from "@/components/portfolio/Skills";
+import Certification from "@/components/portfolio/Certification";
 import Contact from "@/components/portfolio/Contact";
 import Footer from "@/components/portfolio/Footer";
 
@@ -29,8 +31,10 @@ export default function Home() {
             <Hero />
             <About />
             <Marquee />
+            <Projects />
             <Education />
             <Skills />
+            <Certification />
             <Contact />
           </main>
           <Footer />

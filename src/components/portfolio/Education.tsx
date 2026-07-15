@@ -59,7 +59,7 @@ export default function Education() {
         <div className="mb-16 flex flex-col gap-2 sm:mb-24 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex items-center gap-3">
             <span className="font-mono text-[11px] uppercase tracking-widest text-ember">
-              03
+              04
             </span>
             <span className="eyebrow">Education / Journey</span>
           </div>

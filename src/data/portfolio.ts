@@ -14,22 +14,26 @@ export const profile = {
   location: "Sylhet, Bangladesh",
   timezone: "Asia/Dhaka",
   availability: "Open to internships & collaborations",
-  email: "tahmid.sikder.rifat@example.com",
+  email: "tahmidsikderrifat@gmail.com",
+  phone: "+8801817936248",
+  phoneDisplay: "+88 01817 936248",
+  linkedin: "https://www.linkedin.com/in/tahmidsikder/",
   bio: `Hi, I'm Tahmid Sikder Rifat, a Computer Science and Engineering (CSE) student. I'm passionate about web development, cyber security, and modern technology. I enjoy learning new skills, building real-world projects, and continuously improving myself as a future software professional.`,
   manifesto: `I believe the best engineers are not the ones who know everything, but the ones who never stop learning. Every line of code I write today is a step toward the future I am building — one where thoughtful design, security, and curiosity converge into software that genuinely serves people.`,
 } as const;
 
 export const nav = [
   { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
   { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
 export const socials = [
-  { label: "GitHub", href: "https://github.com", handle: "@tahmidsikderrifat" },
-  { label: "LinkedIn", href: "https://linkedin.com", handle: "/tahmid-sikder-rifat" },
-  { label: "Email", href: "mailto:tahmid.sikder.rifat@example.com", handle: "Direct" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/tahmidsikder/", handle: "/in/tahmidsikder" },
+  { label: "Email", href: "mailto:tahmidsikderrifat@gmail.com", handle: "tahmidsikderrifat@gmail.com" },
+  { label: "Phone", href: "tel:+8801817936248", handle: "+88 01817 936248" },
 ] as const;
 
 export const marqueeRows = {
@@ -150,3 +154,67 @@ export const focusAreas = [
     body: "Staying current with emerging tools, frameworks, and paradigms. Curiosity is not a phase — it is the operating system of a software career.",
   },
 ];
+
+export type Project = {
+  index: string;
+  name: string;
+  nameDisplay: string[]; // split lines for hero typography
+  role: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  url: string;
+  urlLabel: string;
+  year: string;
+  collaboration: "solo" | "team";
+};
+
+export const projects: Project[] = [
+  {
+    index: "01",
+    name: "Emergency Plumbing Group 247",
+    nameDisplay: ["Emergency", "Plumbing Group", "247"],
+    role: "Frontend & WordPress Developer",
+    collaboration: "team",
+    description:
+      "A UK-based 24/7 emergency plumbing service platform built in collaboration with a teammate. Designed and developed the complete frontend in WordPress, crafted every service page, and tuned the experience for desktop and mobile visitors who need help fast.",
+    highlights: [
+      "Built in collaboration with a teammate",
+      "Designed and structured service pages",
+      "Optimized for desktop and mobile",
+    ],
+    technologies: ["WordPress", "Elementor", "HTML", "CSS"],
+    url: "https://emergencyplumbinggroup247.co.uk/",
+    urlLabel: "emergencyplumbinggroup247.co.uk",
+    year: "2024",
+  },
+  {
+    index: "02",
+    name: "Unilof",
+    nameDisplay: ["Unilof"],
+    role: "WordPress Website Developer",
+    collaboration: "solo",
+    description:
+      "A clean, modern website designed and developed end-to-end as a solo project. Built from the ground up in WordPress with custom Elementor layouts, fully responsive, and tailored precisely to the client's brand and requirements.",
+    highlights: [
+      "Designed and built independently end-to-end",
+      "Clean, modern UI tailored to the client",
+      "Fully responsive across breakpoints",
+    ],
+    technologies: ["WordPress", "Elementor", "HTML", "CSS"],
+    url: "https://unilof.com/",
+    urlLabel: "unilof.com",
+    year: "2024",
+  },
+];
+
+export const certification = {
+  title: "Basic Web Development Training",
+  issuer: "Youth ICT",
+  year: "2023",
+  regNo: "202064",
+  verificationUrl:
+    "https://youthict.org/result-verification?reg_no=202064&dob=2023-05-17",
+  description:
+    "Foundational training in modern web development — covering HTML, CSS, and the principles of building accessible, responsive interfaces. Verified credential issued by Youth ICT.",
+} as const;

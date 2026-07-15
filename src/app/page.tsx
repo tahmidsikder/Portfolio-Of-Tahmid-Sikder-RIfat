@@ -1,31 +1,41 @@
-'use client'
+"use client";
+
+import { useState } from "react";
+import SmoothScroll from "@/components/portfolio/SmoothScroll";
+import Preloader from "@/components/portfolio/Preloader";
+import CustomCursor from "@/components/portfolio/CustomCursor";
+import Header from "@/components/portfolio/Header";
+import Hero from "@/components/portfolio/Hero";
+import About from "@/components/portfolio/About";
+import Marquee from "@/components/portfolio/Marquee";
+import Education from "@/components/portfolio/Education";
+import Skills from "@/components/portfolio/Skills";
+import Contact from "@/components/portfolio/Contact";
+import Footer from "@/components/portfolio/Footer";
 
 export default function Home() {
+  const [loaded, setLoaded] = useState(false);
+
   return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-      minHeight: '100vh',
-      gap: '2rem',
-      padding: '1rem'
-    }}>
-      <div style={{
-        position: 'relative',
-        width: '6rem',
-        height: '6rem'
-      }}>
-        <img
-          src="/logo.svg"
-          alt="Z.ai Logo"
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'contain'
-          }}
-        />
-      </div>
-    </div>
-  )
+    <>
+      <CustomCursor />
+      <div className="noise-overlay" aria-hidden />
+      {!loaded && <Preloader onDone={() => setLoaded(true)} />}
+
+      <SmoothScroll>
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">
+            <Hero />
+            <About />
+            <Marquee />
+            <Education />
+            <Skills />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </SmoothScroll>
+    </>
+  );
 }

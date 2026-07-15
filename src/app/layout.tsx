@@ -1,49 +1,62 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["200", "300", "400", "500", "600", "700", "800"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+});
+
+const jetbrains = JetBrains_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
-  title: "Z.ai Code Scaffold - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Z.ai. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Z.ai", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Z.ai Team" }],
-  icons: {
-    icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
-  },
+  title: "Tahmid Sikder Rifat — CSE Student & Developer",
+  description:
+    "Tahmid Sikder Rifat — Computer Science & Engineering student passionate about web development, cyber security, and modern technology.",
+  keywords: [
+    "Tahmid Sikder Rifat",
+    "CSE Student",
+    "Web Development",
+    "Cyber Security",
+    "WordPress",
+    "Linux Mint",
+    "Sylhet",
+    "Bangladesh",
+  ],
+  authors: [{ name: "Tahmid Sikder Rifat" }],
   openGraph: {
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
-    url: "https://chat.z.ai",
-    siteName: "Z.ai",
+    title: "Tahmid Sikder Rifat — CSE Student & Developer",
+    description:
+      "Computer Science & Engineering student passionate about web development, cyber security, and modern technology.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Z.ai Code Scaffold",
-    description: "AI-powered development with modern React stack",
+    title: "Tahmid Sikder Rifat — CSE Student & Developer",
+    description:
+      "Computer Science & Engineering student passionate about web development, cyber security, and modern technology.",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${bricolage.variable} ${inter.variable} ${jetbrains.variable} antialiased bg-ink text-bone font-body selection:bg-ember selection:text-ink`}
       >
         {children}
         <Toaster />

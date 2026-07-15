@@ -61,17 +61,21 @@ export default function Contact() {
           >
             <h2 className="display-hero text-bone">
               <span data-cta-word className="inline-block">
-                Let&apos;s
+                Get in
               </span>{" "}
               <span data-cta-word className="inline-block text-ember">
-                build
-              </span>
-              <br />
-              <span data-cta-word className="inline-block">
-                something.
+                Touch
               </span>
             </h2>
           </motion.button>
+
+          <p
+            data-cta-meta
+            className="body-lg mt-6 max-w-2xl text-pretty text-bone-soft"
+          >
+            Feel free to reach out if you&apos;d like to connect or discuss an
+            opportunity.
+          </p>
 
           {/* Contact channels — premium 3-column glass row */}
           <div className="mt-16 grid gap-px overflow-hidden rounded-[2px] border border-line bg-line sm:grid-cols-3">

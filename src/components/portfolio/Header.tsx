@@ -69,7 +69,7 @@ export default function Header() {
             data-cursor-label="Top"
           >
             <span className="font-display text-base font-medium tracking-tight text-bone">
-              {profile.initials}
+              Tahmid Sikder
             </span>
             <span className="hidden font-mono text-[10px] uppercase tracking-widest text-mist sm:inline">
               /Portfolio
@@ -135,7 +135,7 @@ export default function Header() {
           >
             <div className="container-edge flex items-center justify-between py-5">
               <span className="font-display text-base font-medium text-bone">
-                {profile.initials}
+                Tahmid Sikder
               </span>
               <button
                 onClick={() => setMenuOpen(false)}

@@ -30,10 +30,10 @@ export default function Footer() {
               data-cursor-label="Top"
               className="link-underline font-display text-2xl text-bone self-start"
             >
-              {profile.initials}
+              Tahmid Sikder
             </button>
             <span className="font-mono text-[11px] uppercase tracking-widest text-mist">
-              Portfolio / {year}
+              Tahmid Sikder Portfolio / {year}
             </span>
           </div>
 

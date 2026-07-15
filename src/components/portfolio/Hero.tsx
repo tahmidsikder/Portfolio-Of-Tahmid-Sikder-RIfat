@@ -150,12 +150,9 @@ export default function Hero() {
               transition={{ duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 1.3 }}
               className="font-display text-2xl text-bone sm:text-4xl"
             >
-              {profile.lastName}
+              Tahmid Sikder Rifat
             </motion.h2>
           </div>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-mist">
-            Index — 01 / 07
-          </span>
         </div>
       </motion.div>
     </section>

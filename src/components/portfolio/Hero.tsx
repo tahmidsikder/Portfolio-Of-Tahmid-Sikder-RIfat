@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -71,7 +72,9 @@ export default function Hero() {
       </motion.div>
 
       {/* Hero name — the centerpiece */}
-      <div className="container-edge relative flex flex-1 flex-col justify-center">
+      <div className="container-edge relative flex flex-1 flex-col justify-center lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
+        {/* Left: text content (unchanged) */}
+        <div className="relative flex flex-col justify-center">
         {/* Small intro line */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -131,6 +134,62 @@ export default function Hero() {
               <path d="M12 5v14M5 12l7 7 7-7" />
             </svg>
           </button>
+        </motion.div>
+        </div>
+
+        {/* Right: profile photo — only on lg+ where the right space exists */}
+        <motion.div
+          data-hero-meta
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1.1 }}
+          className="relative hidden shrink-0 lg:block"
+        >
+          {/* Soft ember glow behind the photo */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -inset-6 rounded-[32px] opacity-50 blur-2xl"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(232,85,58,0.18), transparent 70%)",
+            }}
+          />
+          {/* Glass-framed photo */}
+          <div
+            className="relative overflow-hidden rounded-[20px] border border-line-strong bg-white/[0.02] backdrop-blur-md"
+            style={{
+              boxShadow:
+                "0 20px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(242,237,227,0.04) inset, 0 0 40px -10px rgba(232,85,58,0.15)",
+            }}
+          >
+            <Image
+              src="/profile/profile-2x.webp"
+              alt="Portrait of Tahmid Sikder Rifat"
+              width={420}
+              height={315}
+              priority
+              sizes="420px"
+              className="block h-auto w-[clamp(280px,22vw,420px)] select-none"
+            />
+            {/* Subtle top sheen for the glass effect */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, rgba(242,237,227,0.06) 0%, transparent 25%, transparent 80%, rgba(0,0,0,0.18) 100%)",
+              }}
+            />
+          </div>
+          {/* Tiny caption strip under the photo */}
+          <div className="mt-3 flex items-center justify-between pr-1">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-mist">
+              Portrait
+            </span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-mist">
+              © {new Date().getFullYear()}
+            </span>
+          </div>
         </motion.div>
       </div>
 

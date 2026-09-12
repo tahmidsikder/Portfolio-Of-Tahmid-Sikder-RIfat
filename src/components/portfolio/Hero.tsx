@@ -72,14 +72,14 @@ export default function Hero() {
       </motion.div>
 
       {/* Hero name — the centerpiece */}
-      <div className="container-edge relative flex flex-1 flex-col justify-center lg:grid lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12">
-        {/* Left: text content (unchanged) */}
+      <div className="container-edge relative flex flex-1 flex-col justify-center md:grid md:grid-cols-[1fr_auto] md:items-center md:gap-8 lg:gap-12">
+        {/* Left: text content */}
         <div className="relative flex flex-col justify-center">
         {/* Small intro line */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
           className="mb-4 flex items-center gap-3"
         >
           <span className="h-px w-8 bg-ember" />
@@ -87,12 +87,11 @@ export default function Hero() {
         </motion.div>
 
         {/* First name — oversized */}
-        <div className="overflow-hidden">
+        <div data-hero-name className="overflow-hidden">
           <motion.h1
-            data-hero-name
-            initial={{ y: "110%" }}
+            initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.4 }}
+            transition={{ duration: 1.0, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
             className="display-hero text-bone"
           >
             {profile.firstName}
@@ -101,10 +100,9 @@ export default function Hero() {
 
         {/* Subtitle row */}
         <motion.div
-          data-hero-name
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.0 }}
+          transition={{ duration: 1, delay: 0.8 }}
           className="mt-4 flex flex-col gap-4 sm:mt-6 sm:flex-row sm:items-end sm:justify-between"
         >
           <p className="display-md max-w-xl text-bone-soft">
@@ -137,13 +135,13 @@ export default function Hero() {
         </motion.div>
         </div>
 
-        {/* Right: profile photo — only on lg+ where the right space exists */}
+        {/* Right: profile photo — visible on md+ */}
         <motion.div
           data-hero-meta
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 1.1 }}
-          className="relative hidden shrink-0 lg:block"
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.9 }}
+          className="relative hidden shrink-0 md:block"
         >
           {/* Soft ember glow behind the photo */}
           <div

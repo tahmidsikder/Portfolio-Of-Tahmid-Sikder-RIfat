@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { profile, nav } from "@/data/portfolio";
 
 export default function Footer() {
@@ -28,9 +29,20 @@ export default function Footer() {
               onClick={scrollTop}
               data-cursor
               data-cursor-label="Top"
-              className="link-underline font-display text-2xl text-bone self-start"
+              className="group flex items-center gap-3 self-start"
             >
-              Tahmid Sikder
+              <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-line-strong bg-ink transition-transform duration-300 group-hover:scale-105 group-hover:border-ember">
+                <Image
+                  src="/icon.png"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <span className="link-underline font-display text-2xl text-bone transition-colors group-hover:text-ember">
+                Tahmid Sikder
+              </span>
             </button>
             <span className="font-mono text-[11px] uppercase tracking-widest text-mist">
               Tahmid Sikder Portfolio / {year}

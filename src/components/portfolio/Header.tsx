@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { profile, nav } from "@/data/portfolio";
 
@@ -72,11 +73,21 @@ export default function Header() {
           {/* Logo */}
           <button
             onClick={() => scrollTo("#top")}
-            className="no-select group flex items-center gap-2"
+            className="no-select group flex items-center gap-2.5"
             data-cursor
             data-cursor-label="Top"
           >
-            <span className="font-display text-base font-medium tracking-tight text-bone">
+            <div className="relative flex h-7 w-7 items-center justify-center overflow-hidden rounded-full border border-line-strong bg-ink transition-transform duration-300 group-hover:scale-105 group-hover:border-ember">
+              <Image
+                src="/icon.png"
+                alt="Logo"
+                width={28}
+                height={28}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
+            <span className="font-display text-base font-medium tracking-tight text-bone transition-colors group-hover:text-ember">
               Tahmid Sikder
             </span>
             <span className="hidden font-mono text-[10px] uppercase tracking-widest text-mist sm:inline">

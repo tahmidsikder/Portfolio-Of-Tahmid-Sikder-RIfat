@@ -163,7 +163,7 @@ export default function Hero() {
             }}
           >
             <Image
-              src="/profile/profile-2x.webp"
+              src="/images/profile12.png"
               alt="Portrait of Tahmid Sikder Rifat"
               width={420}
               height={315}

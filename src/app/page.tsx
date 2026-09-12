@@ -22,10 +22,20 @@ export default function Home() {
     <>
       <CustomCursor />
       <div className="noise-overlay" aria-hidden />
-      {!loaded && <Preloader onDone={() => setLoaded(true)} />}
+      {!loaded && (
+        <Preloader
+          onDone={() => {
+            setLoaded(true);
+            setTimeout(() => {
+              const lenis = (window as unknown as { __lenis?: { resize: () => void } }).__lenis;
+              lenis?.resize();
+            }, 50);
+          }}
+        />
+      )}
 
       <SmoothScroll>
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col overflow-x-clip">
           <Header />
           <main className="flex-1">
             <Hero />

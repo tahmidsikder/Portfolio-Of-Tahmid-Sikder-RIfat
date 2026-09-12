@@ -34,9 +34,17 @@ export default function Header() {
 
   // Lock scroll when menu open
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      lenis?.start();
+    }
     return () => {
       document.body.style.overflow = "";
+      lenis?.start();
     };
   }, [menuOpen]);
 

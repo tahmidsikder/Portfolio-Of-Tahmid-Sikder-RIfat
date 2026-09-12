@@ -84,8 +84,30 @@
     background-color: var(--color-ink);
     color: var(--color-bone);
     font-family: var(--font-body);
-    overflow-x: hidden;
+    overflow-x: clip;
     cursor: none;
+  }
+
+  /* Lenis smooth scroll standard classes */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
   }
 
   /* Hide custom cursor on touch / small screens */
@@ -105,8 +127,27 @@
     color: var(--color-ink);
   }
 
-  /* Scrollbar */
-  ::-webkit-scrollbar { width: 0; height: 0; }
+  /* Atelier custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(242, 237, 227, 0.22);
+    border-radius: 4px;
+    border: 1px solid var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ember);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(242, 237, 227, 0.22) var(--color-ink);
+  }
 }
 
 /* === UTILITIES === */
@@ -234,7 +275,3 @@
   }
 }
 
-/* === ATELIER SCROLLBAR FALLBACK === */
-html {
-  scrollbar-width: none;
-}

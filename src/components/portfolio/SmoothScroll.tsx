@@ -11,38 +11,61 @@ export default function SmoothScroll({
   children: React.ReactNode;
 }) {
   useEffect(() => {
-    // Skip on touch / coarse pointer — native scroll feels better there
-    const isCoarse = window.matchMedia("(pointer: coarse)").matches;
-    if (isCoarse) return;
+    // Only skip on purely touch-only mobile devices with no mouse/trackpad
+    const isTouchOnly = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    if (isTouchOnly) return;
 
     gsap.registerPlugin(ScrollTrigger);
 
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 1.1,
       touchMultiplier: 1.5,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
 
+    // Use dedicated requestAnimationFrame for butter-smooth timing
+    let rafId = 0;
     const raf = (time: number) => {
-      lenis.raf(time * 1000);
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     };
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+    rafId = requestAnimationFrame(raf);
 
-    // Sync ScrollTrigger after fonts/images settle
-    const refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 600);
+    // Sync dimensions on resize, load, and dynamic content changes
+    const onResize = () => {
+      lenis.resize();
+      ScrollTrigger.refresh();
+    };
 
-    // Expose for anchor links
+    window.addEventListener("resize", onResize);
+    window.addEventListener("load", onResize);
+
+    const resizeObserver = new ResizeObserver(() => {
+      lenis.resize();
+      ScrollTrigger.refresh();
+    });
+    resizeObserver.observe(document.body);
+
+    const t1 = setTimeout(onResize, 600);
+    const t2 = setTimeout(onResize, 1500);
+    const t3 = setTimeout(onResize, 3000);
+
+    // Expose for navigation anchor links and external callers
     (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
 
     return () => {
-      gsap.ticker.remove(raf);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("load", onResize);
+      resizeObserver.disconnect();
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
       lenis.destroy();
-      clearTimeout(refreshTimer);
       delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
